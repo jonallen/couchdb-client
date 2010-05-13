@@ -32,6 +32,7 @@ my $DB = $C->newDB('blah');
 ### LOW LEVEL FUNCTIONS
 {
 	my %encoded = $DB->fixViewArgs(
+		startkey => 42,
 		endkey   => 'foo',
 		descending => 1,
 		update => 1,
@@ -39,6 +40,7 @@ my $DB = $C->newDB('blah');
 	);
 
 	is_deeply(\%encoded, {
+		startkey => '42',
 		endkey => '"foo"',
 		descending => 'true',
 		keeps => 'me correctly'

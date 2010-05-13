@@ -245,7 +245,9 @@ sub fixViewArgs {
 				$args{$k} = $self->{client}->{json}->encode($args{$k});
 			}
 			else {
-				$args{$k} = '"' . $args{$k} . '"';
+                                unless ($args{$k} =~ /^\d+(?:\.\d+)*$/s) {
+                                        $args{$k} = '"' . $args{$k} . '"';
+                                }
 			}
 		}
 		elsif ($k eq 'descending') {
